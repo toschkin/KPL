@@ -12,6 +12,9 @@
 #define IDM_ADDDIAP	WM_USER + 402
 #define IDM_PRINT1 WM_USER + 420
 #define IDM_PRINT2 WM_USER + 421
+#define IDM_COPY1 WM_USER + 422
+#define IDM_COPY2 WM_USER + 423
+
 // диалоговое окно CModbusMDlg
 extern BOOL IsIntersect(int Start1,int End1,int Start2,int End2);
 
@@ -54,6 +57,8 @@ BEGIN_MESSAGE_MAP(CModbusMDlg, CDialog)
 	ON_COMMAND(IDM_PRINT2, OnPrint2)	
 	ON_NOTIFY(NM_RCLICK, IDC_GRID2, OnRClickGrid)
 	ON_NOTIFY(NM_RCLICK, IDC_GRID, OnRClickGrid1)	
+	ON_COMMAND(IDM_COPY1, OnCopy1)
+	ON_COMMAND(IDM_COPY2, OnCopy2)		
 END_MESSAGE_MAP()
 
 afx_msg void CModbusMDlg::OnPrint1(void)
@@ -64,6 +69,15 @@ afx_msg void CModbusMDlg::OnPrint1(void)
 afx_msg void CModbusMDlg::OnPrint2(void)
 {
 	m_GridData.Print();
+}
+afx_msg void CModbusMDlg::OnCopy1(void)
+{
+	m_Grid.CopyToClipboard();
+}
+
+afx_msg void CModbusMDlg::OnCopy2(void)
+{
+	m_GridData.CopyToClipboard();
 }
 
 afx_msg void CModbusMDlg::OnGridEndEdit1(NMHDR *pNotifyStruct, LRESULT* pResult)
@@ -316,21 +330,21 @@ BOOL CModbusMDlg::OnInitDialog()
 
 	Item.row = 0;
 	Item.col = 1;							
-	Item.strText = "Тип\r\nприбора";
+	Item.strText = "Тип прибора";
 	m_GridData.SetItem(&Item);
-	m_GridData.SetColumnWidth(1,70);
+	m_GridData.SetColumnWidth(1,150);
 
 	Item.row = 0;
 	Item.col = 2;						
 	Item.strText = "Адрес\r\nустройства";
 	m_GridData.SetItem(&Item);
-	m_GridData.SetColumnWidth(2,65);
+	m_GridData.SetColumnWidth(2,70);
 
 	Item.row = 0;
 	Item.col = 3;						
 	Item.strText = "Номер\r\nфункции\r\nMODBUS";
 	m_GridData.SetItem(&Item);
-	m_GridData.SetColumnWidth(3,55);
+	m_GridData.SetColumnWidth(3,60);
 
 	Item.row = 0;
 	Item.col = 4;						
@@ -468,6 +482,7 @@ afx_msg void CModbusMDlg::OnRClickGrid(NMHDR *pNMHDR, LRESULT *pResult)
 	MenuRButton.AppendMenu(MF_STRING, IDM_DEL, "Удалить набор инф.объектов");
 	MenuRButton.AppendMenu(MF_SEPARATOR);
 	MenuRButton.AppendMenu(MF_STRING, IDM_PRINT2, "Печать...");	
+	MenuRButton.AppendMenu(MF_STRING, IDM_COPY2, "Скопировать в буфер обмена...");	
 
 	POINT point;
 	GetCursorPos(&point);
@@ -482,6 +497,7 @@ afx_msg void CModbusMDlg::OnRClickGrid1(NMHDR *pNMHDR, LRESULT *pResult)
 	CMenu MenuRButton;
 	MenuRButton.CreatePopupMenu();					
 	MenuRButton.AppendMenu(MF_STRING, IDM_PRINT1, "Печать...");	
+	MenuRButton.AppendMenu(MF_STRING, IDM_COPY1, "Скопировать в буфер обмена...");	
 
 	POINT point;
 	GetCursorPos(&point);
@@ -509,7 +525,11 @@ void CModbusMDlg::UpdateDataGrid(void)
 		strOptions.Add("ТУ-32");
 		strOptions.Add("ТИ-16");
 		strOptions.Add("Внешний");//0		
-		strOptions.Add("SATEC TC");
+		strOptions.Add("SATEC TC");		
+		strOptions.Add("SWAPPED FLOAT(4 байта)");//0		
+		strOptions.Add("INTEL FLOAT(4 байта)");//0		
+		strOptions.Add("INT32 TO FLOAT(4 байта)");//0				
+
 		m_GridData.SetCellType(nIndex,1, RUNTIME_CLASS(CGridCellCombo));
 		CGridCellCombo *pCell = (CGridCellCombo*) m_GridData.GetCell(nIndex,1);		
 		pCell->SetOptions(strOptions);		
@@ -529,6 +549,12 @@ void CModbusMDlg::UpdateDataGrid(void)
 			m_GridData.SetItemText(nIndex,1, "МТЕ");
 		else if (m_ModbusM.m_ModbusPriborArray[i].PRIBOR == 7)
 			m_GridData.SetItemText(nIndex,1, "МТЕ(2-х байтный)");
+		else if (m_ModbusM.m_ModbusPriborArray[i].PRIBOR == 9)
+			m_GridData.SetItemText(nIndex,1, "SWAPPED FLOAT(4 байта)");
+		else if (m_ModbusM.m_ModbusPriborArray[i].PRIBOR == 10)
+			m_GridData.SetItemText(nIndex,1, "INTEL FLOAT(4 байта)");
+		else if (m_ModbusM.m_ModbusPriborArray[i].PRIBOR == 11)
+			m_GridData.SetItemText(nIndex,1, "INT32 TO FLOAT(4 байта)");	
 		else if (m_ModbusM.m_ModbusPriborArray[i].PRIBOR == 0)
 			m_GridData.SetItemText(nIndex,1, "Внешний");
 		else 
@@ -727,6 +753,12 @@ BOOL CModbusMDlg::ProcessSave(void)
 			is101.PRIBOR = 2;	
 		else if(str == "МТЕ(2-х байтный)")
 			is101.PRIBOR = 7;	
+		else if(str == "SWAPPED FLOAT(4 байта)")
+			is101.PRIBOR = 9;	
+		else if(str == "INTEL FLOAT(4 байта)")
+			is101.PRIBOR = 10;	
+		else if(str == "INT32 TO FLOAT(4 байта)")
+			is101.PRIBOR = 11;					
 		else
 			is101.PRIBOR = atoi(str);
 				

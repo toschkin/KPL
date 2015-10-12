@@ -1,9 +1,9 @@
 #pragma once
 
-#include "..\..\GRID\GridCtrl.h"
-#include "..\..\GRID\GridCellNumeric.h"
-#include "..\..\GRID\GridCellCombo.h"
-#include "..\..\GRID\GridCellCheck.h"
+#include "..\GRID\GridCtrl.h"
+#include "..\GRID\GridCellNumeric.h"
+#include "..\GRID\GridCellCombo.h"
+#include "..\GRID\GridCellCheck.h"
 #include "BUI.h"
 // диалоговое окно CMapboardDlg
 

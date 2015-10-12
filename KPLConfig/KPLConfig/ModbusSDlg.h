@@ -1,9 +1,9 @@
 #pragma once
 
-#include "..\..\GRID\GridCtrl.h"
-#include "..\..\GRID\GridCellNumeric.h"
-#include "..\..\GRID\GridCellCombo.h"
-#include "..\..\GRID\GridCellCheck.h"
+#include "..\GRID\GridCtrl.h"
+#include "..\GRID\GridCellNumeric.h"
+#include "..\GRID\GridCellCombo.h"
+#include "..\GRID\GridCellCheck.h"
 #include "ModbusS.h"
 #include "afxwin.h"
 
@@ -53,4 +53,6 @@ public:
 	afx_msg void OnPrint1(void);
 	afx_msg void OnPrint2(void);
 	afx_msg void OnAddDiapason();	
+	afx_msg void OnCopy1(void);
+	afx_msg void OnCopy2(void);	
 };

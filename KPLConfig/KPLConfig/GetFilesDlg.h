@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\..\GRID\GridCtrl.h"
+#include "..\GRID\GridCtrl.h"
 #include "WaitDlg.h"
 #define TYPE_ALARM	1
 #define TYPE_LOG	2

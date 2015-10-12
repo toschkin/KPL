@@ -5,10 +5,10 @@
 #pragma once
 #include "afxcmn.h"
 
-#include "..\..\GRID\GridCtrl.h"
-#include "..\..\GRID\GridCellNumeric.h"
-#include "..\..\GRID\GridCellCombo.h"
-#include "..\..\GRID\GridCellCheck.h"
+#include "..\GRID\GridCtrl.h"
+#include "..\GRID\GridCellNumeric.h"
+#include "..\GRID\GridCellCombo.h"
+#include "..\GRID\GridCellCheck.h"
 
 
 #include "KPLConfig.h"

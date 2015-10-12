@@ -11,6 +11,8 @@
 #define IDM_ADDDIAPASON		WM_USER + 402
 #define IDM_PRINT1 WM_USER + 420
 #define IDM_PRINT2 WM_USER + 421
+#define IDM_COPY1 WM_USER + 422
+#define IDM_COPY2 WM_USER + 423
 
 // диалоговое окно CModbusSDlg
 extern BOOL IsIntersect(int Start1,int End1,int Start2,int End2);
@@ -53,6 +55,8 @@ BEGIN_MESSAGE_MAP(CModbusSDlg, CDialog)
 	ON_NOTIFY(NM_RCLICK, IDC_GRID_RETR, OnRClickGrid)
 	ON_NOTIFY(NM_RCLICK, IDC_GRID, OnRClickGrid2)
 	ON_COMMAND(IDM_ADDDIAPASON, OnAddDiapason)
+	ON_COMMAND(IDM_COPY1, OnCopy1)
+	ON_COMMAND(IDM_COPY2, OnCopy2)		
 END_MESSAGE_MAP()
 afx_msg void CModbusSDlg::OnPrint1(void)
 {
@@ -63,6 +67,18 @@ afx_msg void CModbusSDlg::OnPrint2(void)
 {
 	m_Grid.Print();
 }
+
+afx_msg void CModbusSDlg::OnCopy1(void)
+{
+	m_GridCalc.CopyToClipboard();
+}
+
+afx_msg void CModbusSDlg::OnCopy2(void)
+{
+	m_Grid.CopyToClipboard();
+}
+
+
 afx_msg void CModbusSDlg::OnGridEndEdit1(NMHDR *pNotifyStruct, LRESULT* pResult)
 {
 	//проверить порты
@@ -81,6 +97,7 @@ afx_msg void CModbusSDlg::OnRClickGrid(NMHDR *pNMHDR, LRESULT *pResult)
 	MenuRButton.AppendMenu(MF_STRING, IDM_DEL, "Удалить");	
 	MenuRButton.AppendMenu(MF_SEPARATOR);
 	MenuRButton.AppendMenu(MF_STRING, IDM_PRINT1, "Печать...");	
+	MenuRButton.AppendMenu(MF_STRING, IDM_COPY1, "Скопировать в буфер обмена...");	
 
 	POINT point;
 	GetCursorPos(&point);
@@ -95,6 +112,7 @@ afx_msg void CModbusSDlg::OnRClickGrid2(NMHDR *pNMHDR, LRESULT *pResult)
 	CMenu MenuRButton;
 	MenuRButton.CreatePopupMenu();					
 	MenuRButton.AppendMenu(MF_STRING, IDM_PRINT2, "Печать...");	
+	MenuRButton.AppendMenu(MF_STRING, IDM_COPY2, "Скопировать в буфер обмена...");	
 
 	POINT point;
 	GetCursorPos(&point);

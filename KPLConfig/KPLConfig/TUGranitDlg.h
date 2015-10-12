@@ -1,8 +1,8 @@
 #pragma once
-#include "..\..\GRID\GridCtrl.h"
-#include "..\..\GRID\GridCellNumeric.h"
-#include "..\..\GRID\GridCellCombo.h"
-#include "..\..\GRID\GridCellCheck.h"
+#include "..\GRID\GridCtrl.h"
+#include "..\GRID\GridCellNumeric.h"
+#include "..\GRID\GridCellCombo.h"
+#include "..\GRID\GridCellCheck.h"
 #include "STM.h"
 
 // диалоговое окно CTUGranitDlg
