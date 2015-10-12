@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="GRID">
+      <UniqueIdentifier>{de2aa437-d475-416d-92a5-619cb1eb61cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{a5320535-33c5-45fa-9461-320a104ed867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AUX">
+      <UniqueIdentifier>{44bab2d4-135c-4a6c-9b38-bae7f7d103b3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AddDiapIECDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapMaskDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapModbusCalcRetr.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapModbusDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapRCalc.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapRetr.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapSPADlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapTIIndicDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapTSIndicDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDiapTUDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AddIODiapDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="GetFilesDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="GPIOmDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="GPSConfigDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec101mDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec101sDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec103mDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec104mDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec104sDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="IPDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="KorundmDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="KPLConfig.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="KPLConfigDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="LampDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="MapboardDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="ModbusMDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="ModbusSDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="RCalcRetrDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="RetrConfigDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="SPAMDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="TuConfigTUDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="WaitDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="BUI.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="GPIOm.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="GPSTime.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec101m.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec101s.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec103m.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec104m.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Iec104s.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Korundm.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="KPLProject.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="KPLVersion.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Main_Set.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="ModbusM.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="ModbusS.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Retr.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="SPAm.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Tu.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientSocket.cpp">
+      <Filter>AUX</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManip.cpp">
+      <Filter>AUX</Filter>
+    </ClCompile>
+    <ClCompile Include="ModbusTCPM.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="STM.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32Dlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="GranitDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="TUGranitDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\GridCell.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\GridCellBase.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\GridCellCheck.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\GridCellCombo.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\GridCellDateTime.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\GridCellNumeric.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\GridCtrl.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\GridDropTarget.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\InPlaceEdit.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GRID\TitleTip.cpp">
+      <Filter>GRID</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AddDiapIECDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapMaskDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapModbusCalcRetr.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapModbusDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapRCalc.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapRetr.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapSPADlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapTIIndicDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapTSIndicDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddDiapTUDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AddIODiapDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GetFilesDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GPIOmDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GPSConfigDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec101mDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec101sDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec103mDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec104mDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec104sDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="IPDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="KorundmDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="KPLConfig.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="KPLConfigDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="LampDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="MapboardDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ModbusMDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ModbusSDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="RCalcRetrDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="RetrConfigDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="SPAMDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="TuConfigTUDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="BUI.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="GPIOm.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="GPSTime.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec101m.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec101s.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec103m.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec104m.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Iec104s.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Korundm.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="KPLProject.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="KPLVersion.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Main_Set.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="ModbusM.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="ModbusS.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Retr.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="SPAm.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Tu.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientSocket.h">
+      <Filter>AUX</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManip.h">
+      <Filter>AUX</Filter>
+    </ClInclude>
+    <ClInclude Include="ModbusTCPM.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="STM.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32Dlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GranitDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="TUGranitDlg.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\CellRange.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\GridCell.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\GridCellBase.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\GridCellCheck.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\GridCellCombo.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\GridCellDateTime.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\GridCellNumeric.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\GridCtrl.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\GridDropTarget.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\InPlaceEdit.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\MemDC.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GRID\TitleTip.h">
+      <Filter>GRID</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\KPLConfig.ico">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\..\Program Files\Microsoft Visual Studio\Common\Graphics\Icons\Comm\NET08.ICO">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KPLConfig.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\KPLConfig.rc2">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

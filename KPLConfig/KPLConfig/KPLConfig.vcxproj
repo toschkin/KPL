@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9CA02498-E6B1-4409-978E-198033374D50}</ProjectGuid>
+    <RootNamespace>KPLConfig</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110_xp</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.61030.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0419</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0419</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\GRID\GridCell.cpp" />
+    <ClCompile Include="..\GRID\GridCellBase.cpp" />
+    <ClCompile Include="..\GRID\GridCellCheck.cpp" />
+    <ClCompile Include="..\GRID\GridCellCombo.cpp" />
+    <ClCompile Include="..\GRID\GridCellDateTime.cpp" />
+    <ClCompile Include="..\GRID\GridCellNumeric.cpp" />
+    <ClCompile Include="..\GRID\GridCtrl.cpp" />
+    <ClCompile Include="..\GRID\GridDropTarget.cpp" />
+    <ClCompile Include="..\GRID\InPlaceEdit.cpp" />
+    <ClCompile Include="..\GRID\TitleTip.cpp" />
+    <ClCompile Include="AddDiapIECDlg.cpp" />
+    <ClCompile Include="AddDiapMaskDlg.cpp" />
+    <ClCompile Include="AddDiapModbusCalcRetr.cpp" />
+    <ClCompile Include="AddDiapModbusDlg.cpp" />
+    <ClCompile Include="AddDiapRCalc.cpp" />
+    <ClCompile Include="AddDiapRetr.cpp" />
+    <ClCompile Include="AddDiapSPADlg.cpp" />
+    <ClCompile Include="AddDiapTIIndicDlg.cpp" />
+    <ClCompile Include="AddDiapTSIndicDlg.cpp" />
+    <ClCompile Include="AddDiapTUDlg.cpp" />
+    <ClCompile Include="AddIODiapDlg.cpp" />
+    <ClCompile Include="GetFilesDlg.cpp" />
+    <ClCompile Include="GPIOmDlg.cpp" />
+    <ClCompile Include="GPSConfigDlg.cpp" />
+    <ClCompile Include="GranitDlg.cpp" />
+    <ClCompile Include="Iec101mDlg.cpp" />
+    <ClCompile Include="Iec101sDlg.cpp" />
+    <ClCompile Include="Iec103mDlg.cpp" />
+    <ClCompile Include="Iec104mDlg.cpp" />
+    <ClCompile Include="Iec104sDlg.cpp" />
+    <ClCompile Include="IPDlg.cpp" />
+    <ClCompile Include="KorundmDlg.cpp" />
+    <ClCompile Include="KPLConfig.cpp" />
+    <ClCompile Include="KPLConfigDlg.cpp" />
+    <ClCompile Include="LampDlg.cpp" />
+    <ClCompile Include="MapboardDlg.cpp" />
+    <ClCompile Include="ModbusMDlg.cpp" />
+    <ClCompile Include="ModbusSDlg.cpp" />
+    <ClCompile Include="ModbusTCPM.cpp" />
+    <ClCompile Include="RCalcRetrDlg.cpp" />
+    <ClCompile Include="RetrConfigDlg.cpp" />
+    <ClCompile Include="SPAMDlg.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="STM.cpp" />
+    <ClCompile Include="STM32Dlg.cpp" />
+    <ClCompile Include="TuConfigTUDlg.cpp" />
+    <ClCompile Include="TUGranitDlg.cpp" />
+    <ClCompile Include="WaitDlg.cpp" />
+    <ClCompile Include="BUI.cpp" />
+    <ClCompile Include="GPIOm.cpp" />
+    <ClCompile Include="GPSTime.cpp" />
+    <ClCompile Include="Iec101m.cpp" />
+    <ClCompile Include="Iec101s.cpp" />
+    <ClCompile Include="Iec103m.cpp" />
+    <ClCompile Include="Iec104m.cpp" />
+    <ClCompile Include="Iec104s.cpp" />
+    <ClCompile Include="Korundm.cpp" />
+    <ClCompile Include="KPLProject.cpp" />
+    <ClCompile Include="KPLVersion.cpp" />
+    <ClCompile Include="Main_Set.cpp" />
+    <ClCompile Include="ModbusM.cpp" />
+    <ClCompile Include="ModbusS.cpp" />
+    <ClCompile Include="Retr.cpp" />
+    <ClCompile Include="SPAm.cpp" />
+    <ClCompile Include="Tu.cpp" />
+    <ClCompile Include="ClientSocket.cpp" />
+    <ClCompile Include="FileManip.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\GRID\CellRange.h" />
+    <ClInclude Include="..\GRID\GridCell.h" />
+    <ClInclude Include="..\GRID\GridCellBase.h" />
+    <ClInclude Include="..\GRID\GridCellCheck.h" />
+    <ClInclude Include="..\GRID\GridCellCombo.h" />
+    <ClInclude Include="..\GRID\GridCellDateTime.h" />
+    <ClInclude Include="..\GRID\GridCellNumeric.h" />
+    <ClInclude Include="..\GRID\GridCtrl.h" />
+    <ClInclude Include="..\GRID\GridDropTarget.h" />
+    <ClInclude Include="..\GRID\InPlaceEdit.h" />
+    <ClInclude Include="..\GRID\MemDC.h" />
+    <ClInclude Include="..\GRID\TitleTip.h" />
+    <ClInclude Include="AddDiapIECDlg.h" />
+    <ClInclude Include="AddDiapMaskDlg.h" />
+    <ClInclude Include="AddDiapModbusCalcRetr.h" />
+    <ClInclude Include="AddDiapModbusDlg.h" />
+    <ClInclude Include="AddDiapRCalc.h" />
+    <ClInclude Include="AddDiapRetr.h" />
+    <ClInclude Include="AddDiapSPADlg.h" />
+    <ClInclude Include="AddDiapTIIndicDlg.h" />
+    <ClInclude Include="AddDiapTSIndicDlg.h" />
+    <ClInclude Include="AddDiapTUDlg.h" />
+    <ClInclude Include="AddIODiapDlg.h" />
+    <ClInclude Include="GetFilesDlg.h" />
+    <ClInclude Include="GPIOmDlg.h" />
+    <ClInclude Include="GPSConfigDlg.h" />
+    <ClInclude Include="GranitDlg.h" />
+    <ClInclude Include="Iec101mDlg.h" />
+    <ClInclude Include="Iec101sDlg.h" />
+    <ClInclude Include="Iec103mDlg.h" />
+    <ClInclude Include="Iec104mDlg.h" />
+    <ClInclude Include="Iec104sDlg.h" />
+    <ClInclude Include="IPDlg.h" />
+    <ClInclude Include="KorundmDlg.h" />
+    <ClInclude Include="KPLConfig.h" />
+    <ClInclude Include="KPLConfigDlg.h" />
+    <ClInclude Include="LampDlg.h" />
+    <ClInclude Include="MapboardDlg.h" />
+    <ClInclude Include="ModbusMDlg.h" />
+    <ClInclude Include="ModbusSDlg.h" />
+    <ClInclude Include="ModbusTCPM.h" />
+    <ClInclude Include="RCalcRetrDlg.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="RetrConfigDlg.h" />
+    <ClInclude Include="SPAMDlg.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="STM.h" />
+    <ClInclude Include="STM32Dlg.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="TuConfigTUDlg.h" />
+    <ClInclude Include="TUGranitDlg.h" />
+    <ClInclude Include="WaitDlg.h" />
+    <ClInclude Include="BUI.h" />
+    <ClInclude Include="GPIOm.h" />
+    <ClInclude Include="GPSTime.h" />
+    <ClInclude Include="Iec101m.h" />
+    <ClInclude Include="Iec101s.h" />
+    <ClInclude Include="Iec103m.h" />
+    <ClInclude Include="Iec104m.h" />
+    <ClInclude Include="Iec104s.h" />
+    <ClInclude Include="Korundm.h" />
+    <ClInclude Include="KPLProject.h" />
+    <ClInclude Include="KPLVersion.h" />
+    <ClInclude Include="Main_Set.h" />
+    <ClInclude Include="ModbusM.h" />
+    <ClInclude Include="ModbusS.h" />
+    <ClInclude Include="Retr.h" />
+    <ClInclude Include="SPAm.h" />
+    <ClInclude Include="Tu.h" />
+    <ClInclude Include="ClientSocket.h" />
+    <ClInclude Include="FileManip.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\KPLConfig.ico" />
+    <Image Include="..\..\..\..\..\..\Program Files\Microsoft Visual Studio\Common\Graphics\Icons\Comm\NET08.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KPLConfig.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\KPLConfig.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="KPLConfig.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
