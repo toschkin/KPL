@@ -584,7 +584,7 @@ BOOL CGranitDlg::ProcessSave(void)
 		}	
 
 		str = m_GridData.GetItemText(i,2);
-		is101.N_KP = atoi(str);
+		is101.AFB = atoi(str);
 		if((is101.AFB>16)||(is101.AFB<0))
 		{
 			AfxMessageBox("юта: 0..16!");
