@@ -34,7 +34,8 @@
 #include "afxwin.h"
 
 
-#define SERVICE_COMMAND_EXIT_APP 1
+#define SERVICE_COMMAND_EXIT_APP	1
+#define SERVICE_COMMAND_STOP_SOFT	2
 
 // диалоговое окно CKPLConfigDlg
 class CKPLConfigDlg : public CDialog
@@ -119,4 +120,5 @@ public:
 	afx_msg void OnTelnet();
 	CComboBox m_cmbVersion;
 	afx_msg void OnCbnSelendokComboversion();
+	afx_msg void OnStopkplsoft();
 };

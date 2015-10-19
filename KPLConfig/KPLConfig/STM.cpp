@@ -470,6 +470,12 @@ BOOL CSTM::LoadFromFile(CString strFile)
 					str.TrimLeft("NEXTMESSAGE");
 					str.Trim();str.Trim("=");
 					tmpGranit.INVERT_REQUEST = atoi(str);
+				}	
+				if(str.Find("INVERT_REQUEST") != -1)
+				{
+					str.TrimLeft("INVERT_REQUEST");
+					str.Trim();str.Trim("=");
+					tmpGranit.INVERT_REQUEST = atoi(str);
 				}
 				if(str.Find("INVERT_RESPONSE") != -1)
 				{
@@ -551,7 +557,14 @@ BOOL CSTM::LoadFromFile(CString strFile)
 					str.Trim();str.Trim("=");
 					if((atoi(str) > 0)&&(atoi(str) <= tmpGranit.m_IndividualStructureGranitArray.GetSize()))				
 						nProcIndex = atoi(str)-1;								
-				}			
+				}	
+				if(str.Find("N_KP") != -1)
+				{
+					str.TrimLeft("N_KP");
+					str.Trim();str.Trim("=");
+					if((nProcIndex >= 0)&&(nProcIndex < tmpGranit.m_IndividualStructureGranitArray.GetSize()))
+						tmpGranit.m_IndividualStructureGranitArray[nProcIndex].N_KP = atoi(str);										
+				}
 				if(str.Find("PACKET_TYPE") != -1)
 				{
 					str.TrimLeft("PACKET_TYPE");

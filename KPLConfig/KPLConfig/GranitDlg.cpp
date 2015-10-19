@@ -5,7 +5,6 @@
 #include "KPLConfig.h"
 #include "GranitDlg.h"
 #include "TUGranitDlg.h"
-#include "afxdialogex.h"
 
 
 // диалоговое окно CGranitDlg
@@ -52,7 +51,6 @@ BEGIN_MESSAGE_MAP(CGranitDlg, CDialog)
 	ON_COMMAND(IDM_PRINT2, OnPrint2)	
 	ON_NOTIFY(NM_RCLICK, IDC_GRID, OnRClickGrid)
 	ON_NOTIFY(NM_RCLICK, IDC_GRID2, OnRClickGrid1)	
-
 	ON_BN_CLICKED(IDC_BUTTON1, &CGranitDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
@@ -121,7 +119,7 @@ BOOL CGranitDlg::OnInitDialog()
 	aOptions.RemoveAll();
 
 	m_Grid.SetItemText(2,0,"Меандр");
-	str.Format("%d",m_Granit.MEANDER_VALUE+1);
+	str.Format("%d",m_Granit.MEANDER_VALUE);
 	m_Grid.SetItemText(2,1,str);
 	m_Grid.SetCellType(2, 1, RUNTIME_CLASS(CGridCellNumeric));
 
@@ -271,8 +269,7 @@ BOOL CGranitDlg::OnInitDialog()
 	pCell->SetCurSel(m_Granit.SERVICE);
 	aOptions.RemoveAll();
 		
-	m_Grid.AutoSize();
-	//m_Grid.SetColumnWidth(1,100);
+	m_Grid.AutoSizeColumns();	
 	m_Grid.Refresh();
 
 	m_GridData.SetColumnCount(7);
@@ -326,8 +323,7 @@ void CGranitDlg::OnSize(UINT nType, int cx, int cy)
 	CDialog::OnSize(nType, cx, cy);
 
 	// TODO: добавьте свой код обработчика сообщений	
-
-	long nCentery = (long)(cy / 2);
+	
 	long nCenter = (long)(cx / 2);
 
 	int dx = 5;
@@ -374,9 +370,7 @@ void CGranitDlg::OnSize(UINT nType, int cx, int cy)
 	Invalidate(FALSE);
 }
 afx_msg void CGranitDlg::OnRClickGrid1(NMHDR *pNMHDR, LRESULT *pResult)
-{
-	NM_GRIDVIEW* pItem = (NM_GRIDVIEW*) pNMHDR;
-
+{	
 	CMenu MenuRButton;
 	MenuRButton.CreatePopupMenu();				
 	MenuRButton.AppendMenu(MF_STRING, IDM_ADD, "Добавить набор инф.объектов");	
@@ -392,9 +386,7 @@ afx_msg void CGranitDlg::OnRClickGrid1(NMHDR *pNMHDR, LRESULT *pResult)
 				
 }
 afx_msg void CGranitDlg::OnRClickGrid(NMHDR *pNMHDR, LRESULT *pResult)
-{
-	NM_GRIDVIEW* pItem = (NM_GRIDVIEW*) pNMHDR;
-
+{	
 	CMenu MenuRButton;
 	MenuRButton.CreatePopupMenu();					
 	MenuRButton.AppendMenu(MF_STRING, IDM_PRINT1, "Печать...");	
@@ -543,7 +535,7 @@ BOOL CGranitDlg::ProcessSave(void)
 	m_Granit.C_IC_NA_1_PERIOD = atoi(str);
 
 	str = m_Grid.GetItemText(12,1);
-	m_Granit.C_IC_NA_1_PERIOD = atoi(str);
+	m_Granit.MEANDER_PERIOD = atoi(str);
 
 	str = m_Grid.GetItemText(13,1);
 	m_Granit.REQ_RESPONSE_PERIOD = atoi(str);
@@ -567,7 +559,7 @@ BOOL CGranitDlg::ProcessSave(void)
 	m_Granit.SERVICE = pCell->GetCurSel();
 	
 	m_Granit.m_IndividualStructureGranitArray.RemoveAll();
-	int nTotalAmount=0;
+	
 
 	for(int i = 1; i < m_GridData.GetRowCount(); i++)
 	{
@@ -591,7 +583,7 @@ BOOL CGranitDlg::ProcessSave(void)
 			return FALSE;
 		}	
 
-		CGridCellCombo* pCell = (CGridCellCombo*) m_GridData.GetCell(i,3);		
+		pCell = (CGridCellCombo*) m_GridData.GetCell(i,3);		
 		
 		if(pCell->GetCurSel() == 0)
 			is101.INFO_TYPE = 2;

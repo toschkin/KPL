@@ -1067,11 +1067,12 @@ BEGIN
         MENUITEM "Печать...",                   IDM_PRINT
         MENUITEM "Выход",                       ID_APP_EXIT
     END
-    POPUP "Прошивка"
+    POPUP "Сервис"
     BEGIN
         MENUITEM "Записать файл прошивки в КПЛ...", IDM_UPLOADFW
         MENUITEM "Считать файл прошивки из КПЛ...", IDM_DOWNLOADFW
         MENUITEM "Перезагрузить КПЛ",           ID_32794
+        MENUITEM "Остановить ПО КПЛ",           ID_STOPKPLSOFT
     END
     POPUP "Журналы"
     BEGIN

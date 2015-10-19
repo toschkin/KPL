@@ -97,6 +97,7 @@ BEGIN_MESSAGE_MAP(CKPLConfigDlg, CDialog)
 	ON_COMMAND(ID_32794, &CKPLConfigDlg::On32794)
 	ON_COMMAND(IDM_TELNET, &CKPLConfigDlg::OnTelnet)
 	ON_CBN_SELENDOK(IDC_COMBOVERSION, &CKPLConfigDlg::OnCbnSelendokComboversion)
+	ON_COMMAND(ID_STOPKPLSOFT, &CKPLConfigDlg::OnStopkplsoft)
 END_MESSAGE_MAP()
 
 CString GetEXEDirPath(void)
@@ -4237,3 +4238,89 @@ void CKPLConfigDlg::OnCopy()
 	m_Grid.CopyToClipboard();
 }
 
+
+
+void CKPLConfigDlg::OnStopkplsoft()
+{
+	CIPDlg dlgIP;
+	if(dlgIP.DoModal()==IDOK)
+	{
+		if(dlgIP.m_strIP.IsEmpty())
+		{
+			AfxMessageBox("Не введен IP-адрес КПЛ.");
+			return;
+		}
+		// TODO: добавьте свой код обработчика команд
+		if(AfxMessageBox("Остановить ПО КПЛ?",MB_ICONQUESTION|MB_YESNO)==IDYES)
+		{
+			CWaitCursor wait;
+			m_WaitDlg.ShowWindow(SW_SHOWNORMAL);
+			m_WaitDlg.SetText("Установка соединения с КПЛ: "+dlgIP.m_strIP);		
+			/////////////////////////////ESTABLISHING CONNECTION////////////////////////////////////
+			CString strFtpSite;
+			CString strServerName;
+			CString strObject;
+			INTERNET_PORT nPort;
+			DWORD dwServiceType;
+			CInternetSession  m_InternetSession("KPLApp",1,INTERNET_OPEN_TYPE_DIRECT);						
+			CFtpConnection* pFtpConn = NULL;
+			
+			strFtpSite = "ftp://"+dlgIP.m_strIP+m_strFtpHome;												
+			
+			if (!AfxParseURL(strFtpSite, dwServiceType, strServerName, strObject, nPort))
+			{
+				m_WaitDlg.ShowWindow(SW_HIDE);
+				AfxMessageBox("Неверный формат адреса FTP сервера!");			
+				return;
+			}
+
+			try
+			{					
+				pFtpConn = m_InternetSession.GetFtpConnection(strServerName,m_strFtpUser, m_strFtpPassword, nPort);				
+			}
+			catch (CInternetException* pEx)
+			{		
+				m_WaitDlg.ShowWindow(SW_HIDE);		
+				// catch errors from WinINet
+				TCHAR szErr[1024];
+				if (pEx->GetErrorMessage(szErr, 1024))
+				{
+					CString str3,str4;
+					str3 = szErr;
+					str4 = "Ошибка установки FTP соединения: " + str3;
+					AfxMessageBox(str4);
+					pEx->Delete();								
+				}			
+				return;
+			}
+			m_WaitDlg.ShowWindow(SW_HIDE);
+
+			if(pFtpConn != NULL)
+			{			
+				
+				m_WaitDlg.ShowWindow(SW_SHOWNORMAL);
+				m_WaitDlg.SetText("Остановка программы в КПЛ...");
+
+				if(!SendAndCheckServiceCommandFile(pFtpConn,strObject,SERVICE_COMMAND_STOP_SOFT,10000))
+				{
+					if(AfxMessageBox("Не удалось остановить программу в КПЛ.\r\nВозможно программа уже остановлена.\r\nПродолжить?",MB_ICONQUESTION|MB_YESNO)==IDNO)	
+					{
+						pFtpConn->Close();								
+						m_InternetSession.Close();
+						m_WaitDlg.ShowWindow(SW_HIDE);
+						return;
+					}										
+				}
+
+				pFtpConn->Close();			
+				m_InternetSession.Close();	
+				m_WaitDlg.ShowWindow(SW_HIDE);
+				//reboot
+				if(RebootOnTelnet(dlgIP.m_strIP))
+					AfxMessageBox("Комманда перезагрузки КПЛ отправлена.",MB_ICONINFORMATION);
+				else
+					AfxMessageBox("Ошибка при отправке комманды перезагрузки КПЛ");
+			}						
+		}
+	}
+}
