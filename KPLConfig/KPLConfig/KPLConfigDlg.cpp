@@ -73,15 +73,14 @@ void CKPLConfigDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CKPLConfigDlg, CDialog)
 	ON_WM_PAINT()
-	ON_WM_QUERYDRAGICON()
-	//}}AFX_MSG_MAP
+	ON_WM_QUERYDRAGICON()	
 	ON_NOTIFY(TCN_SELCHANGE, IDC_MAIN_TAB, &CKPLConfigDlg::OnTcnSelchangeMainTab)
 	ON_NOTIFY(NM_RCLICK, IDC_GRID, &CKPLConfigDlg::OnRClickGrid)
-	ON_COMMAND(IDM_ADD, OnAdd)
-	ON_COMMAND(IDM_ADDDIAP, OnAddDiapason)	
-	ON_COMMAND(IDM_DEL, OnDel)
-	ON_COMMAND(IDM_COPY, OnCopy)	
-	ON_NOTIFY(GVN_ENDLABELEDIT, IDC_GRID, OnGridEndEdit)
+	ON_COMMAND(IDM_ADD, &CKPLConfigDlg::OnAdd)
+	ON_COMMAND(IDM_ADDDIAP, &CKPLConfigDlg::OnAddDiapason)	
+	ON_COMMAND(IDM_DEL, &CKPLConfigDlg::OnDel)
+	ON_COMMAND(IDM_COPY, &CKPLConfigDlg::OnCopy)	
+	ON_NOTIFY(GVN_ENDLABELEDIT, IDC_GRID, &CKPLConfigDlg::OnGridEndEdit)
 	ON_WM_SIZE()
 	ON_COMMAND(IDM_SAVE, &CKPLConfigDlg::OnSave)	
 	ON_COMMAND(IDM_OPEN, &CKPLConfigDlg::OnOpen)
@@ -4303,23 +4302,16 @@ void CKPLConfigDlg::OnStopkplsoft()
 
 				if(!SendAndCheckServiceCommandFile(pFtpConn,strObject,SERVICE_COMMAND_STOP_SOFT,10000))
 				{
-					if(AfxMessageBox("Не удалось остановить программу в КПЛ.\r\nВозможно программа уже остановлена.\r\nПродолжить?",MB_ICONQUESTION|MB_YESNO)==IDNO)	
-					{
-						pFtpConn->Close();								
-						m_InternetSession.Close();
-						m_WaitDlg.ShowWindow(SW_HIDE);
-						return;
-					}										
-				}
-
-				pFtpConn->Close();			
-				m_InternetSession.Close();	
+					AfxMessageBox("Не удалось остановить программу в КПЛ.\r\nВозможно программа уже остановлена.",MB_ICONINFORMATION);					
+					pFtpConn->Close();								
+					m_InternetSession.Close();
+					m_WaitDlg.ShowWindow(SW_HIDE);					
+					return;							
+				}				
+				pFtpConn->Close();								
+				m_InternetSession.Close();
 				m_WaitDlg.ShowWindow(SW_HIDE);
-				//reboot
-				if(RebootOnTelnet(dlgIP.m_strIP))
-					AfxMessageBox("Комманда перезагрузки КПЛ отправлена.",MB_ICONINFORMATION);
-				else
-					AfxMessageBox("Ошибка при отправке комманды перезагрузки КПЛ");
+				AfxMessageBox("Встроенное ПО КПЛ остановлено.",MB_ICONINFORMATION);
 			}						
 		}
 	}
