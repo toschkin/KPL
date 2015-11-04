@@ -944,7 +944,7 @@ void CTuConfigTUDlg::UpdateGrid(void)
 			if(m_TuArray[i].FUNCTION == 5)
 				m_Grid.SetItemText(nIndex,col++, aOptions[0]);
 			if(m_TuArray[i].FUNCTION == 6)
-				m_Grid.SetItemText(nIndex,3, aOptions[1]);
+				m_Grid.SetItemText(nIndex,col++, aOptions[1]);
 			if(m_TuArray[i].FUNCTION == 45)
 				m_Grid.SetItemText(nIndex,col++, aOptions[0]);
 			if(m_TuArray[i].FUNCTION == 46)
