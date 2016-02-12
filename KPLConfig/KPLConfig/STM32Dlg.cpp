@@ -12,6 +12,7 @@
 #define IDM_SETTINGS WM_USER + 422
 #define IDM_ADD		WM_USER + 400
 #define IDM_DEL		WM_USER + 401
+#include "AISTDlg.h"
 
 // диалоговое окно CSTM32Dlg
 
@@ -284,32 +285,65 @@ afx_msg void CSTM32Dlg::OnSettings(void)
 {
 	CCellID cell = m_GridSTMChannels.GetFocusCell();	
 	if(cell.row > 0)
-	{									
-		CGranitDlg dlg;
-		dlg.m_Granit = m_STM.m_IndividualStructureSTMArray[cell.row-1].m_Granit;		
-		dlg.m_nStartPMZAddr = m_nStartPMZAddr;
-		dlg.m_nEndPMZAddr = m_nEndPMZAddr;
-		dlg.m_nChannelNumber =  m_STM.m_IndividualStructureSTMArray[cell.row-1].CHANNEL;
-		if(dlg.DoModal()==IDOK)		
+	{		
+		if (m_STM.m_IndividualStructureSTMArray[cell.row - 1].PROTOCOL_TYPE == PROTOCOL_TYPE_GRANIT)
 		{
-			m_STM.m_IndividualStructureSTMArray[cell.row-1].m_Granit = dlg.m_Granit;
-			//тут подсчитаем колво инф. объектов
-			int nTotalAmount=0;
-	
-			for(int i = 0; i < m_STM.m_IndividualStructureSTMArray.GetSize();i++)
+			CGranitDlg dlg;
+			dlg.m_Granit = m_STM.m_IndividualStructureSTMArray[cell.row - 1].m_Granit;
+			dlg.m_nStartPMZAddr = m_nStartPMZAddr;
+			dlg.m_nEndPMZAddr = m_nEndPMZAddr;
+			dlg.m_nChannelNumber = m_STM.m_IndividualStructureSTMArray[cell.row - 1].CHANNEL;
+			if (dlg.DoModal() == IDOK)
 			{
-				for(int k = 0; k < m_STM.m_IndividualStructureSTMArray[i].m_Granit.m_IndividualStructureGranitArray.GetSize();k++)
-				{	
-					nTotalAmount += m_STM.m_IndividualStructureSTMArray[i].m_Granit.m_IndividualStructureGranitArray[k].NUMBER;
-				}	
+				m_STM.m_IndividualStructureSTMArray[cell.row - 1].m_Granit = dlg.m_Granit;
+				//тут подсчитаем колво инф. объектов
+				int nTotalAmount = 0;
+
+				for (int i = 0; i < m_STM.m_IndividualStructureSTMArray.GetSize(); i++)
+				{
+					for (int k = 0; k < m_STM.m_IndividualStructureSTMArray[i].m_Granit.m_IndividualStructureGranitArray.GetSize(); k++)
+					{
+						nTotalAmount += m_STM.m_IndividualStructureSTMArray[i].m_Granit.m_IndividualStructureGranitArray[k].NUMBER;
+					}
+				}
+				if (nTotalAmount > m_nEndPMZAddr + 1)
+				{
+					CString str;
+					str.Format("%d > %d !", nTotalAmount, m_nEndPMZAddr + 1);
+					AfxMessageBox("Суммарное кол-во инф. объектов настроенных в каналах больше выделенного количества для данного процесса:" + str);
+					//return FALSE;
+				}
 			}
-			if(nTotalAmount > m_nEndPMZAddr+1)
+		}
+		if (m_STM.m_IndividualStructureSTMArray[cell.row - 1].PROTOCOL_TYPE == PROTOCOL_TYPE_AIST)
+		{
+			//CAISTDlg
+			CAISTDlg dlg;
+			dlg.m_AIST = m_STM.m_IndividualStructureSTMArray[cell.row - 1].m_AIST;
+			dlg.m_nStartPMZAddr = m_nStartPMZAddr;
+			dlg.m_nEndPMZAddr = m_nEndPMZAddr;
+			dlg.m_nChannelNumber = m_STM.m_IndividualStructureSTMArray[cell.row - 1].CHANNEL;
+			if (dlg.DoModal() == IDOK)
 			{
-				CString str;
-				str.Format("%d > %d !",nTotalAmount,m_nEndPMZAddr+1);
-				AfxMessageBox("Суммарное кол-во инф. объектов настроенных в каналах больше выделенного количества для данного процесса:"+str);
-				//return FALSE;
-			}	
+				m_STM.m_IndividualStructureSTMArray[cell.row - 1].m_AIST = dlg.m_AIST;
+				//тут подсчитаем колво инф. объектов
+				int nTotalAmount = 0;
+
+				for (int i = 0; i < m_STM.m_IndividualStructureSTMArray.GetSize(); i++)
+				{
+					for (int k = 0; k < m_STM.m_IndividualStructureSTMArray[i].m_AIST.m_IndividualStructureAISTArray.GetSize(); k++)
+					{
+						nTotalAmount++;
+					}
+				}
+				if (nTotalAmount > m_nEndPMZAddr + 1)
+				{
+					CString str;
+					str.Format("%d > %d !", nTotalAmount, m_nEndPMZAddr + 1);
+					AfxMessageBox("Суммарное кол-во инф. объектов настроенных в каналах больше выделенного количества для данного процесса:" + str);
+					//return FALSE;
+				}
+			}
 		}
 	}
 }
@@ -418,12 +452,14 @@ void CSTM32Dlg::UpdateChannelsGrid(void)
 		nCol++;
 
 		strOptions.Add("Гранит");
+		strOptions.Add("AИСТ(мастер)");
 		m_GridSTMChannels.SetCellType(nIndex,nCol, RUNTIME_CLASS(CGridCellCombo));
 		pCell = (CGridCellCombo*) m_GridSTMChannels.GetCell(nIndex,nCol);				
 		pCell->SetOptions(strOptions);		
 		pCell->SetStyle(CBS_DROPDOWNLIST); //CBS_DROPDOWN, CBS_DROPDOWNLIST, CBS_SIMPLE				
-		if(m_STM.m_IndividualStructureSTMArray[i].PROTOCOL_TYPE == 1)		
-			pCell->SetCurSel(0);
+		
+		pCell->SetCurSel(m_STM.m_IndividualStructureSTMArray[i].PROTOCOL_TYPE-1);
+		
 		strOptions.RemoveAll();		
 		nCol++;
 

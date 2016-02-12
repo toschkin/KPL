@@ -225,6 +225,9 @@
     <ClCompile Include="..\GRID\TitleTip.cpp">
       <Filter>GRID</Filter>
     </ClCompile>
+    <ClCompile Include="AISTDlg.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddDiapIECDlg.h">
@@ -439,6 +442,9 @@
     </ClInclude>
     <ClInclude Include="..\GRID\TitleTip.h">
       <Filter>GRID</Filter>
+    </ClInclude>
+    <ClInclude Include="AISTDlg.h">
+      <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

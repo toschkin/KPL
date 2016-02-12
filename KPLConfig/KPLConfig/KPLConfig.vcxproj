@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -22,14 +22,14 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110_xp</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -139,6 +139,7 @@
     <ClCompile Include="AddDiapTSIndicDlg.cpp" />
     <ClCompile Include="AddDiapTUDlg.cpp" />
     <ClCompile Include="AddIODiapDlg.cpp" />
+    <ClCompile Include="AISTDlg.cpp" />
     <ClCompile Include="GetFilesDlg.cpp" />
     <ClCompile Include="GPIOmDlg.cpp" />
     <ClCompile Include="GPSConfigDlg.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="AddDiapTSIndicDlg.h" />
     <ClInclude Include="AddDiapTUDlg.h" />
     <ClInclude Include="AddIODiapDlg.h" />
+    <ClInclude Include="AISTDlg.h" />
     <ClInclude Include="GetFilesDlg.h" />
     <ClInclude Include="GPIOmDlg.h" />
     <ClInclude Include="GPSConfigDlg.h" />

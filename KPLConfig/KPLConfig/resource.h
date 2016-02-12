@@ -49,6 +49,8 @@
 #define IDD_GRANIT_DIALOG               161
 #define IDD_TU_DIALOG2                  162
 #define IDD_TU_GRANIT_DIALOG            162
+#define IDD_GRANIT_DIALOG1              163
+#define IDD_AIST_DIALOG                 163
 #define IDC_MAIN_TAB                    1000
 #define IDC_GRID                        1001
 #define IDC_GRID2                       1002
@@ -142,7 +144,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        145
+#define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         32799
 #define _APS_NEXT_CONTROL_VALUE         1030
 #define _APS_NEXT_SYMED_VALUE           101

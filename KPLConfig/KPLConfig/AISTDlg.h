@@ -5,25 +5,27 @@
 #include "..\GRID\GridCellCombo.h"
 #include "..\GRID\GridCellCheck.h"
 #include "STM.h"
-// диалоговое окно CGranitDlg
 
-class CGranitDlg : public CDialog
+
+// диалоговое окно CAISTDlg
+
+class CAISTDlg : public CDialog
 {
-	DECLARE_DYNAMIC(CGranitDlg)
+	DECLARE_DYNAMIC(CAISTDlg)
 
 public:
-	CGranitDlg(CWnd* pParent = NULL);   // стандартный конструктор
-	virtual ~CGranitDlg();
+	CAISTDlg(CWnd* pParent = NULL);   // стандартный конструктор
+	virtual ~CAISTDlg();
 
 // Данные диалогового окна
-	enum { IDD = IDD_GRANIT_DIALOG };
+	enum { IDD = IDD_AIST_DIALOG };
 
-	СGranit m_Granit;
+	СAIST m_AIST;
 	int m_nChannelNumber;
 	CString strTitle;
 	CGridCtrl m_Grid;
 	CGridCtrl m_GridData;
-	//CModbusM m_ModbusM;
+	
 	int m_nStartPMZAddr;
 	int m_nEndPMZAddr;
 	BOOL ProcessSave(void);
@@ -49,6 +51,5 @@ public:
 	afx_msg void OnGridEndEdit(NMHDR *pNotifyStruct, LRESULT* pResult);	
 	afx_msg void OnGridEndEdit1(NMHDR *pNotifyStruct, LRESULT* pResult);		
 	afx_msg void OnPrint1(void);
-	afx_msg void OnPrint2(void);
-	afx_msg void OnBnClickedButton1();
+	afx_msg void OnPrint2(void);	
 };

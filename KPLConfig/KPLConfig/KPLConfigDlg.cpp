@@ -2340,7 +2340,7 @@ afx_msg void CKPLConfigDlg::OnGridEndEdit(NMHDR *pNotifyStruct, LRESULT* pResult
 										CString strIec101mPath;
 										//CString strIec101mTuPath;										
 										//strIec101mTuPath.Format("%stu%d.ini",m_strLastProjectPath,Iec101m.m_nProcNum);
-										strIec101mPath.Format("%sshit%d.ini",m_strLastProjectPath,Iec101m.m_nProcNum);
+										strIec101mPath.Format("%sshield%d.ini",m_strLastProjectPath,Iec101m.m_nProcNum);
 										CMapboard tmp2;
 										if(tmp2.LoadFromFile(strIec101mPath))
 										{

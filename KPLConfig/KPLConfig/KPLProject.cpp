@@ -225,6 +225,12 @@ BOOL CKPLProject::SaveProject(CString strDirectory,CString strFTPSite,CFtpConnec
 							
 							sFTPFile.Format("%s/tu_granit_p%d_c%d.ini",strFTPSite,i+1,k+1);						
 							pFtpConn->PutFile(strTuPath,sFTPFile);
+
+							//aist														
+							strGranitPath.Format("%saist_m%d_c%d.ini", strDirectory, i + 1, k + 1);
+							sFTPFile.Format("%s/aist_m%d_c%d.ini", strFTPSite, i + 1, k + 1);
+							pFtpConn->PutFile(strGranitPath, sFTPFile);
+							
 						}
 						sFTPFile.Format("%s/stm_m%d.ini",strFTPSite,i+1);						
 						if(!pFtpConn->PutFile(strIec101mPath,sFTPFile))
@@ -535,7 +541,7 @@ BOOL CKPLProject::SaveProject(CString strDirectory,CString strFTPSite,CFtpConnec
 				{
 					//CString str=dlg.GetPathName();
 					CString strIec101mPath;									
-					strIec101mPath.Format("%sshit%d.ini",strDirectory,i+1);
+					strIec101mPath.Format("%sshield%d.ini",strDirectory,i+1);
 					if(m_MapboardArray[j].SaveToFile(strIec101mPath)!=TRUE)					
 					{
 						FileSaveErrorMessage(strIec101mPath);
@@ -545,7 +551,7 @@ BOOL CKPLProject::SaveProject(CString strDirectory,CString strFTPSite,CFtpConnec
 					if((!strFTPSite.IsEmpty())&&(pFtpConn!=NULL))
 					{			
 						CString sFTPFile;
-						sFTPFile.Format("%s/shit%d.ini",strFTPSite,i+1);						
+						sFTPFile.Format("%s/shield%d.ini",strFTPSite,i+1);						
 						if(!pFtpConn->PutFile(strIec101mPath,sFTPFile))
 						{
 							FileSaveErrorMessage(sFTPFile);
@@ -1095,7 +1101,7 @@ BOOL CKPLProject::LoadProject(CString strDirectory)
 				//CString strIec101mTuPath;
 				//str.TrimRight("main_set.ini");
 				//strIec101mTuPath.Format("%stu%d.ini",strDirectory,i+1);
-				strIec101mPath.Format("%sshit%d.ini",strDirectory,i+1);
+				strIec101mPath.Format("%sshield%d.ini",strDirectory,i+1);
 				CMapboard tmp2;
 				tmp2.m_nProcNum = i+1;
 				if(tmp2.LoadFromFile(strIec101mPath))

@@ -1,6 +1,9 @@
 #pragma once
 #include "kplversion.h"
 
+#define PROTOCOL_TYPE_GRANIT	1
+#define PROTOCOL_TYPE_AIST		2
+
 struct TUGranit: public CKPLVersion
 {	
 	int N_GROUP_2B;
@@ -217,6 +220,81 @@ struct СGranit: public CKPLVersion
 	}
 };
 
+struct IndividualStructureAIST : public CKPLVersion
+{
+	int PACKET_TYPE;/*2 –тип пакета данных
+		........... 1 - ТС 8 бит ТС располагаются один за другим в ПМЗ с адреса указаного в поле ADRESS_PMZ 2 –ТИ одно байтные
+		........... 3 –ТИ двухбайтные следущий парметр по счету будет принят как старший байт
+		...........двухбайтного ТИ*/
+	int ADDRESS_PARAM;//адрес данных	
+	int ADDRESS_PMZ;//=0 адрес в ПМЗ с которого размещаются обьекты
+	CString strCOMMENT;//granit — поле комментарий к блоку
+
+	IndividualStructureAIST()
+	{		
+		PACKET_TYPE = 4;
+		ADDRESS_PARAM = 0;		
+		ADDRESS_PMZ = 0;
+	}
+	IndividualStructureAIST(const IndividualStructureAIST& aIndividualStructure101)
+	{		
+		PACKET_TYPE = aIndividualStructure101.PACKET_TYPE;
+		ADDRESS_PARAM = aIndividualStructure101.ADDRESS_PARAM;		
+		ADDRESS_PMZ = aIndividualStructure101.ADDRESS_PMZ;
+		strCOMMENT = aIndividualStructure101.strCOMMENT;
+	}
+	void operator = (const IndividualStructureAIST& aIndividualStructure101)
+	{
+		PACKET_TYPE = aIndividualStructure101.PACKET_TYPE;
+		ADDRESS_PARAM = aIndividualStructure101.ADDRESS_PARAM;
+		ADDRESS_PMZ = aIndividualStructure101.ADDRESS_PMZ;
+		strCOMMENT = aIndividualStructure101.strCOMMENT;
+	}
+};
+typedef CArray<IndividualStructureAIST, IndividualStructureAIST> CIndividualStructureAISTArray;
+
+struct СAIST : public CKPLVersion
+{
+	int LOG_ENABLE;// = 1— вести лог обмена 0 - нет 1 - да
+	int ALARM_ENABLE;// = 1 — вести лог аварий 0 - нет 1 - да
+	int SERVICE;// = 0 - сервисное поле 0 — нет 1 — выводить лог обмена в консоль
+	int NO_LINK_PERIOD;// = 0 - резервное поле всегда 0
+
+	CIndividualStructureAISTArray m_IndividualStructureAISTArray;
+	
+	СAIST()
+	{		
+		LOG_ENABLE = 0;
+		ALARM_ENABLE = 0;
+		SERVICE = 0;		
+		NO_LINK_PERIOD = 0;		
+	}
+	~СAIST()
+	{
+		LOG_ENABLE = 0;
+		ALARM_ENABLE = 0;
+		SERVICE = 0;
+		NO_LINK_PERIOD = 0;
+		m_IndividualStructureAISTArray.RemoveAll();		
+	}
+	СAIST(const СAIST& aIndividualStructure101)
+	{		
+		LOG_ENABLE = aIndividualStructure101.LOG_ENABLE;//1;
+		ALARM_ENABLE = aIndividualStructure101.ALARM_ENABLE;//1;
+		SERVICE = aIndividualStructure101.SERVICE;//1;		
+		NO_LINK_PERIOD = aIndividualStructure101.NO_LINK_PERIOD;//60;		
+		m_IndividualStructureAISTArray.Copy(aIndividualStructure101.m_IndividualStructureAISTArray);		
+	}
+	void operator = (const СAIST& aIndividualStructure101)
+	{
+		LOG_ENABLE = aIndividualStructure101.LOG_ENABLE;//1;
+		ALARM_ENABLE = aIndividualStructure101.ALARM_ENABLE;//1;
+		SERVICE = aIndividualStructure101.SERVICE;//1;		
+		NO_LINK_PERIOD = aIndividualStructure101.NO_LINK_PERIOD;//60;		
+		m_IndividualStructureAISTArray.Copy(aIndividualStructure101.m_IndividualStructureAISTArray);
+	}
+};
+
 struct IndividualStructureSTM: public CKPLVersion
 {		
 	int PROTOCOL_TYPE;/*=1 - тип протокола для данного канала
@@ -231,6 +309,7 @@ struct IndividualStructureSTM: public CKPLVersion
 	CString strCOMMENT;//granit — поле комментарий к блоку
 
 	СGranit m_Granit;
+	СAIST	m_AIST;
 
 	IndividualStructureSTM()
 	{			
@@ -244,6 +323,7 @@ struct IndividualStructureSTM: public CKPLVersion
 		CHANNEL=aIndividualStructure101.CHANNEL;		
 		SPEED=aIndividualStructure101.SPEED;		
 		m_Granit = aIndividualStructure101.m_Granit;
+		m_AIST = aIndividualStructure101.m_AIST;
 		strCOMMENT=aIndividualStructure101.strCOMMENT;	
 	}
 	void operator = (const IndividualStructureSTM& aIndividualStructure101)
@@ -252,6 +332,7 @@ struct IndividualStructureSTM: public CKPLVersion
 		CHANNEL=aIndividualStructure101.CHANNEL;		
 		SPEED=aIndividualStructure101.SPEED;		
 		m_Granit = aIndividualStructure101.m_Granit;
+		m_AIST = aIndividualStructure101.m_AIST;
 		strCOMMENT=aIndividualStructure101.strCOMMENT;	
 	}
 };
