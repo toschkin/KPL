@@ -278,7 +278,7 @@ BOOL CGranitDlg::OnInitDialog()
 	m_GridData.SetFixedRowCount(1);	
 	m_GridData.EnableTitleTips(0);
 	//m_GridData.SetColumnResize(0);
-	m_GridData.EnableSelection(0);
+	//m_GridData.EnableSelection(0);
 
 	m_GridData.SetItemText(0,0,"Комментарий");
 	m_GridData.SetItemText(0,1,"№ КП");

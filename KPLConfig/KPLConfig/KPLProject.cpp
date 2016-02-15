@@ -213,24 +213,28 @@ BOOL CKPLProject::SaveProject(CString strDirectory,CString strFTPSite,CFtpConnec
 						CString sFTPFile;
 						//тупо пробую заливать все что толдько может быть игноря ошибки
 						//так же надо и с аистом будет делать
-						for(int k=0;k<4;k++)
-						{				
-							CString strTuPath;	
-							CString strGranitPath;	
-							strTuPath.Format("%stu_granit_p%d_c%d.ini",strDirectory,i+1,k+1);
-							strGranitPath.Format("%sgranit_m%d_c%d.ini",strDirectory,i+1,k+1);
+						for(int k=0;k<m_STMArray[j].m_IndividualStructureSTMArray.GetSize();k++)
+						{	
+							CString strTuPath;
+							CString strConfigPath;
+							if(m_STMArray[j].m_IndividualStructureSTMArray[k].PROTOCOL_TYPE == PROTOCOL_TYPE_GRANIT)
+							{
+								strTuPath.Format("%stu_granit_p%d_c%d.ini", strDirectory, i + 1, k + 1);
+								strConfigPath.Format("%sgranit_m%d_c%d.ini", strDirectory, i + 1, k + 1);
 
-							sFTPFile.Format("%s/granit_m%d_c%d.ini",strFTPSite,i+1,k+1);														
-							pFtpConn->PutFile(strGranitPath,sFTPFile);
-							
-							sFTPFile.Format("%s/tu_granit_p%d_c%d.ini",strFTPSite,i+1,k+1);						
-							pFtpConn->PutFile(strTuPath,sFTPFile);
+								sFTPFile.Format("%s/granit_m%d_c%d.ini", strFTPSite, i + 1, k + 1);
+								pFtpConn->PutFile(strConfigPath, sFTPFile);
 
-							//aist														
-							strGranitPath.Format("%saist_m%d_c%d.ini", strDirectory, i + 1, k + 1);
-							sFTPFile.Format("%s/aist_m%d_c%d.ini", strFTPSite, i + 1, k + 1);
-							pFtpConn->PutFile(strGranitPath, sFTPFile);
-							
+								sFTPFile.Format("%s/tu_granit_p%d_c%d.ini", strFTPSite, i + 1, k + 1);
+								pFtpConn->PutFile(strTuPath, sFTPFile);
+							}
+							if (m_STMArray[j].m_IndividualStructureSTMArray[k].PROTOCOL_TYPE == PROTOCOL_TYPE_AIST)
+							{
+								//aist														
+								strConfigPath.Format("%saist_m%d_c%d.ini", strDirectory, i + 1, k + 1);
+								sFTPFile.Format("%s/aist_m%d_c%d.ini", strFTPSite, i + 1, k + 1);
+								pFtpConn->PutFile(strConfigPath, sFTPFile);
+							}							
 						}
 						sFTPFile.Format("%s/stm_m%d.ini",strFTPSite,i+1);						
 						if(!pFtpConn->PutFile(strIec101mPath,sFTPFile))

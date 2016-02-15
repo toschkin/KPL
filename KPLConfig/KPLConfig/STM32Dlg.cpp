@@ -194,7 +194,7 @@ BOOL CSTM32Dlg::OnInitDialog()
 	m_GridSTMChannels.SetFixedRowCount(1);	
 	m_GridSTMChannels.EnableTitleTips(0);
 	//m_GridSTMChannels.SetColumnResize(0);
-	m_GridSTMChannels.EnableSelection(0);
+	//m_GridSTMChannels.EnableSelection(0);
 
 	m_GridSTMChannels.SetItemText(0,0,"№ канала");
 	m_GridSTMChannels.SetItemText(0,1,"Протокол");
