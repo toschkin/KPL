@@ -709,7 +709,7 @@ BOOL CIec101m::LoadFromTuFile(CString strFile)
 				if((nProcIndex >= 0)&&(nProcIndex < m_TuArray.GetSize()))
 					m_TuArray[nProcIndex].MASKA_DAMAGE_TU = atoi(str);										
 			}
-			if((str.Find("//") != -1)&&(str.Find("//_") == -1))
+			if((str.Find("//") != -1)/*&&(str.Find("//_") == -1)*/)
 			{
 				str.TrimLeft("//");				
 				str.Remove('\n');

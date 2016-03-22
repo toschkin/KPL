@@ -233,6 +233,7 @@ BOOL CTuConfigTUDlg::SaveGrid(void)
 				return FALSE;
 			}
 			
+			col++;//потому что колонка скрыта
 			tu.REGTU_OFF = atoi(str);
 			/*str = m_Grid.GetItemText(i,5);
 			tu.REGTU_OFF = atoi(str);
@@ -292,7 +293,7 @@ BOOL CTuConfigTUDlg::SaveGrid(void)
 			str = m_Grid.GetItemText(i,col++);
 			tu.IEC_ASDU = atoi(str);
 			
-			CGridCellCheck *pCell2 = (CGridCellCheck*) m_Grid.GetCell(i,16);						
+			CGridCellCheck *pCell2 = (CGridCellCheck*) m_Grid.GetCell(i,col++);						
 			if(pCell2->GetCheck())
 				tu.TU_ACT_TRM_ENABLE=1;
 			else
@@ -564,6 +565,7 @@ BOOL CTuConfigTUDlg::OnInitDialog()
 		m_Grid.SetItem(&Item);
 		m_Grid.SetColumnWidth(nCol++,90);
 
+		//колонка скрыта
 		Item.row = 0;
 		Item.col = nCol;							
 		Item.strText = "Адрес ТУ на\r\nОТКЛЮЧЕНИЕ";
