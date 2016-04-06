@@ -272,7 +272,7 @@ BOOL CGranitDlg::OnInitDialog()
 	m_Grid.AutoSizeColumns();	
 	m_Grid.Refresh();
 
-	m_GridData.SetColumnCount(7);
+	m_GridData.SetColumnCount(8);
 	//m_GridData.SetFixedColumnCount(1);
 	m_GridData.SetRowCount(1);
 	m_GridData.SetFixedRowCount(1);	
@@ -287,6 +287,7 @@ BOOL CGranitDlg::OnInitDialog()
 	m_GridData.SetItemText(0,4,"№ Группы");
 	m_GridData.SetItemText(0,5,"Адрес в ПМЗ");
 	m_GridData.SetItemText(0,6,"Кол-во инф. объектов");
+	m_GridData.SetItemText(0, 7, "Формат ТИТ");
 
 	UpdateDataGrid();
 
@@ -485,6 +486,14 @@ void CGranitDlg::UpdateDataGrid(void)
 		m_GridData.SetItemText(nIndex,6,str);
 		m_GridData.SetCellType(nIndex,6,RUNTIME_CLASS(CGridCellNumeric));
 
+		strOptions.Add("без знака");
+		strOptions.Add("знак");		
+		m_GridData.SetCellType(nIndex, 7, RUNTIME_CLASS(CGridCellCombo));
+		pCell = (CGridCellCombo*)m_GridData.GetCell(nIndex, 7);
+		pCell->SetOptions(strOptions);
+		pCell->SetStyle(CBS_DROPDOWNLIST); //CBS_DROPDOWN, CBS_DROPDOWNLIST, CBS_SIMPLE						
+		pCell->SetCurSel(m_Granit.m_IndividualStructureGranitArray[i].DATA_FORMAT);		
+		strOptions.RemoveAll();
 	}	
 	m_GridData.AutoSize();
 	m_GridData.Refresh();
@@ -624,7 +633,11 @@ BOOL CGranitDlg::ProcessSave(void)
 			m_GridData.EnsureVisible(i,0);
 			m_GridData.Refresh();
 			//return FALSE;
-		}					
+		}		
+
+		pCell = (CGridCellCombo*)m_GridData.GetCell(i, 7);
+		is101.DATA_FORMAT = pCell->GetCurSel();
+
 		m_Granit.m_IndividualStructureGranitArray.Add(is101);
 	}
 	

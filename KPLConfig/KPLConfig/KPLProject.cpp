@@ -210,29 +210,27 @@ BOOL CKPLProject::SaveProject(CString strDirectory,CString strFTPSite,CFtpConnec
 					
 					if((!strFTPSite.IsEmpty())&&(pFtpConn!=NULL))
 					{
-						CString sFTPFile;
-						//тупо пробую заливать все что толдько может быть игноря ошибки
-						//так же надо и с аистом будет делать
+						CString sFTPFile;						
 						for(int k=0;k<m_STMArray[j].m_IndividualStructureSTMArray.GetSize();k++)
 						{	
 							CString strTuPath;
 							CString strConfigPath;
 							if(m_STMArray[j].m_IndividualStructureSTMArray[k].PROTOCOL_TYPE == PROTOCOL_TYPE_GRANIT)
 							{
-								strTuPath.Format("%stu_granit_p%d_c%d.ini", strDirectory, i + 1, k + 1);
-								strConfigPath.Format("%sgranit_m%d_c%d.ini", strDirectory, i + 1, k + 1);
+								strTuPath.Format("%stu_granit_p%d_c%d.ini", strDirectory, i + 1, k);
+								strConfigPath.Format("%sgranit_m%d_c%d.ini", strDirectory, i + 1, k);
 
-								sFTPFile.Format("%s/granit_m%d_c%d.ini", strFTPSite, i + 1, k + 1);
+								sFTPFile.Format("%s/granit_m%d_c%d.ini", strFTPSite, i + 1, k);
 								pFtpConn->PutFile(strConfigPath, sFTPFile);
 
-								sFTPFile.Format("%s/tu_granit_p%d_c%d.ini", strFTPSite, i + 1, k + 1);
+								sFTPFile.Format("%s/tu_granit_p%d_c%d.ini", strFTPSite, i + 1, k);
 								pFtpConn->PutFile(strTuPath, sFTPFile);
 							}
 							if (m_STMArray[j].m_IndividualStructureSTMArray[k].PROTOCOL_TYPE == PROTOCOL_TYPE_AIST)
 							{
 								//aist														
-								strConfigPath.Format("%saist_m%d_c%d.ini", strDirectory, i + 1, k + 1);
-								sFTPFile.Format("%s/aist_m%d_c%d.ini", strFTPSite, i + 1, k + 1);
+								strConfigPath.Format("%saist_m%d_c%d.ini", strDirectory, i + 1, k);
+								sFTPFile.Format("%s/aist_m%d_c%d.ini", strFTPSite, i + 1, k);
 								pFtpConn->PutFile(strConfigPath, sFTPFile);
 							}							
 						}

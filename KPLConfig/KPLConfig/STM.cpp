@@ -77,6 +77,8 @@ BOOL CSTM::SaveToFile(CString strFile)
 		strBuf+=str;		
 		str.Format("SPEED=%d\r\n",m_IndividualStructureSTMArray[i].SPEED);
 		strBuf+=str;
+		str.Format("CHANNEL2=%d\r\n", m_IndividualStructureSTMArray[i].CHANNEL2);
+		strBuf += str;		
 		str.Format("//%s\r\n\r\n",m_IndividualStructureSTMArray[i].strCOMMENT);
 		strBuf+=str;
 	}
@@ -163,6 +165,8 @@ BOOL CSTM::SaveToFile(CString strFile)
 				strBuf += str;
 				str.Format("ADDRESS_PMZ=%d\r\n", m_IndividualStructureSTMArray[i].m_Granit.m_IndividualStructureGranitArray[k].ADDRESS_PMZ);
 				strBuf += str;
+				str.Format("DATA_FORMAT=%d\r\n", m_IndividualStructureSTMArray[i].m_Granit.m_IndividualStructureGranitArray[k].DATA_FORMAT);
+				strBuf += str;				
 				str.Format("//%s\r\n\r\n", m_IndividualStructureSTMArray[i].m_Granit.m_IndividualStructureGranitArray[k].strCOMMENT);
 				strBuf += str;
 			}
@@ -393,7 +397,7 @@ BOOL CSTM::LoadFromFile(CString strFile)
 				if((nProcIndex >= 0)&&(nProcIndex < m_IndividualStructureSTMArray.GetSize()))
 					m_IndividualStructureSTMArray[nProcIndex].PROTOCOL_TYPE = atoi(str);										
 			}
-			if(str.Find("CHANNEL") != -1)
+			if((str.Find("CHANNEL") != -1)&& (str.Find("CHANNEL2") == -1))
 			{
 				str.TrimLeft("CHANNEL");
 				str.Trim();str.Trim("=");
@@ -407,6 +411,14 @@ BOOL CSTM::LoadFromFile(CString strFile)
 				if((nProcIndex >= 0)&&(nProcIndex < m_IndividualStructureSTMArray.GetSize()))
 					m_IndividualStructureSTMArray[nProcIndex].SPEED = atoi(str);										
 			}
+			if (str.Find("CHANNEL2") != -1)
+			{
+				str.TrimLeft("CHANNEL2");
+				str.Trim(); str.Trim("=");
+				if ((nProcIndex >= 0) && (nProcIndex < m_IndividualStructureSTMArray.GetSize()))
+					m_IndividualStructureSTMArray[nProcIndex].CHANNEL2 = atoi(str);
+			}
+			
 			if(str.Find("//") != -1)
 			{
 				str.TrimLeft("//");				
@@ -653,6 +665,13 @@ BOOL CSTM::LoadFromFile(CString strFile)
 						if ((nProcIndex >= 0) && (nProcIndex < tmpGranit.m_IndividualStructureGranitArray.GetSize()))
 							tmpGranit.m_IndividualStructureGranitArray[nProcIndex].ADDRESS_PMZ = atoi(str);
 					}
+					if (str.Find("DATA_FORMAT") != -1)
+					{
+						str.TrimLeft("DATA_FORMAT");
+						str.Trim(); str.Trim("=");
+						if ((nProcIndex >= 0) && (nProcIndex < tmpGranit.m_IndividualStructureGranitArray.GetSize()))
+							tmpGranit.m_IndividualStructureGranitArray[nProcIndex].DATA_FORMAT = atoi(str);
+					}					
 					if (str.Find("//") != -1)
 					{
 						str.TrimLeft("//");

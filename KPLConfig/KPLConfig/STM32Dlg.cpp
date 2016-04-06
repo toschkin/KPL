@@ -63,6 +63,34 @@ afx_msg void CSTM32Dlg::OnGridEndEdit(NMHDR *pNotifyStruct, LRESULT* pResult)
 }
 afx_msg void CSTM32Dlg::OnGridEndEdit1(NMHDR *pNotifyStruct, LRESULT* pResult)
 {		
+	NM_GRIDVIEW* pItem = (NM_GRIDVIEW*)pNotifyStruct;
+	if (pItem->iColumn == 1)//achtung! ne zabivat pri dobavlenii kolonok m_GridData)
+	{
+		CString str = m_GridSTMChannels.GetItemText(pItem->iRow, pItem->iColumn + 2);
+		if(m_GridSTMChannels.GetItemText(pItem->iRow,pItem->iColumn) == "Гранит")		
+		{			
+			CStringArray strOptions;
+			strOptions.Add("4");
+			strOptions.Add("5");
+			strOptions.Add("6");
+			strOptions.Add("7");
+			m_GridSTMChannels.SetCellType(pItem->iRow, pItem->iColumn+2, RUNTIME_CLASS(CGridCellCombo));
+			CGridCellCombo* pCell = (CGridCellCombo*)m_GridSTMChannels.GetCell(pItem->iRow, pItem->iColumn + 2);
+			pCell->SetOptions(strOptions);
+			pCell->SetStyle(CBS_DROPDOWNLIST); //CBS_DROPDOWN, CBS_DROPDOWNLIST, CBS_SIMPLE							
+			m_GridSTMChannels.SetItemText(pItem->iRow, pItem->iColumn + 2, str);
+			m_GridSTMChannels.SetItemState(pItem->iRow, pItem->iColumn + 2, m_GridSTMChannels.GetItemState(pItem->iRow, pItem->iColumn + 2) & ~GVIS_READONLY);
+			m_GridSTMChannels.SetItemFgColour(pItem->iRow, pItem->iColumn + 2, RGB(0, 0, 0));
+			strOptions.RemoveAll();
+		}
+		else
+		{
+			m_GridSTMChannels.SetCellType(pItem->iRow, pItem->iColumn + 2, RUNTIME_CLASS(CGridCellNumeric));
+			m_GridSTMChannels.SetItemText(pItem->iRow, pItem->iColumn + 2, str);						
+			m_GridSTMChannels.SetItemState(pItem->iRow, pItem->iColumn + 2, m_GridSTMChannels.GetItemState(pItem->iRow, pItem->iColumn + 2) | GVIS_READONLY);
+			m_GridSTMChannels.SetItemFgColour(pItem->iRow, pItem->iColumn + 2, RGB(127,127, 127));
+		}
+	}
 	m_GridSTMChannels.AutoSizeColumns();
 	m_GridSTMChannels.Refresh();
 	ProcessSave(TRUE);	
@@ -188,7 +216,7 @@ BOOL CSTM32Dlg::OnInitDialog()
 	m_Grid.SetColumnWidth(1,60);
 	m_Grid.Refresh();
 
-	m_GridSTMChannels.SetColumnCount(4);
+	m_GridSTMChannels.SetColumnCount(5);
 	//m_GridSTMChannels.SetFixedColumnCount(1);
 	m_GridSTMChannels.SetRowCount(1);
 	m_GridSTMChannels.SetFixedRowCount(1);	
@@ -199,7 +227,8 @@ BOOL CSTM32Dlg::OnInitDialog()
 	m_GridSTMChannels.SetItemText(0,0,"№ канала");
 	m_GridSTMChannels.SetItemText(0,1,"Протокол");
 	m_GridSTMChannels.SetItemText(0,2,"Скорость");
-	m_GridSTMChannels.SetItemText(0,3,"Комментарий");	
+	m_GridSTMChannels.SetItemText(0,3, "№ приемного канала");	
+	m_GridSTMChannels.SetItemText(0,4,"Комментарий");	
 
 	UpdateChannelsGrid();
 	UpdateGrid();
@@ -245,7 +274,6 @@ void CSTM32Dlg::UpdateGrid()
 	m_Grid.SetColumnWidth(1,60);
 	m_Grid.Refresh();
 }
-
 void CSTM32Dlg::OnOK()
 {
 	// TODO: добавьте специализированный код или вызов базового класса
@@ -253,8 +281,6 @@ void CSTM32Dlg::OnOK()
 		return;
 	CDialog::OnOK();
 }
-
-
 void CSTM32Dlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
 	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
@@ -264,8 +290,6 @@ void CSTM32Dlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 		lpMMI->ptMinTrackSize.y = (long)m_Rect.Height();
 	}
 }
-
-
 BOOL CSTM32Dlg::PreTranslateMessage(MSG* pMsg)
 {
 	// TODO: добавьте специализированный код или вызов базового класса
@@ -427,7 +451,6 @@ afx_msg void CSTM32Dlg::OnDel()
 		UpdateChannelsGrid();
 	}
 }
-
 void CSTM32Dlg::UpdateChannelsGrid(void)
 {
 	CString str;
@@ -439,15 +462,15 @@ void CSTM32Dlg::UpdateChannelsGrid(void)
 		int nIndex = m_GridSTMChannels.InsertRow(NULL);
 		int nCol = 0;
 			
-		strOptions.Add("1");
-		strOptions.Add("2");	
-		strOptions.Add("3");
-		strOptions.Add("4");		
+		strOptions.Add("0");
+		strOptions.Add("1");	
+		strOptions.Add("2");
+		strOptions.Add("3");		
 		m_GridSTMChannels.SetCellType(nIndex,nCol, RUNTIME_CLASS(CGridCellCombo));
 		CGridCellCombo* pCell = (CGridCellCombo*) m_GridSTMChannels.GetCell(nIndex,nCol);				
 		pCell->SetOptions(strOptions);		
 		pCell->SetStyle(CBS_DROPDOWNLIST); //CBS_DROPDOWN, CBS_DROPDOWNLIST, CBS_SIMPLE				
-		pCell->SetCurSel(m_STM.m_IndividualStructureSTMArray[i].CHANNEL-1);
+		pCell->SetCurSel(m_STM.m_IndividualStructureSTMArray[i].CHANNEL);
 		strOptions.RemoveAll();		
 		nCol++;
 
@@ -456,8 +479,7 @@ void CSTM32Dlg::UpdateChannelsGrid(void)
 		m_GridSTMChannels.SetCellType(nIndex,nCol, RUNTIME_CLASS(CGridCellCombo));
 		pCell = (CGridCellCombo*) m_GridSTMChannels.GetCell(nIndex,nCol);				
 		pCell->SetOptions(strOptions);		
-		pCell->SetStyle(CBS_DROPDOWNLIST); //CBS_DROPDOWN, CBS_DROPDOWNLIST, CBS_SIMPLE				
-		
+		pCell->SetStyle(CBS_DROPDOWNLIST); //CBS_DROPDOWN, CBS_DROPDOWNLIST, CBS_SIMPLE						
 		pCell->SetCurSel(m_STM.m_IndividualStructureSTMArray[i].PROTOCOL_TYPE-1);
 		
 		strOptions.RemoveAll();		
@@ -480,6 +502,28 @@ void CSTM32Dlg::UpdateChannelsGrid(void)
 		else if(m_STM.m_IndividualStructureSTMArray[i].SPEED == 6)
 			pCell->SetCurSel(3);				
 		strOptions.RemoveAll();		
+		nCol++;
+
+		if(m_STM.m_IndividualStructureSTMArray[i].PROTOCOL_TYPE == PROTOCOL_TYPE_GRANIT)
+		{
+			strOptions.Add("4");
+			strOptions.Add("5");
+			strOptions.Add("6");
+			strOptions.Add("7");
+			m_GridSTMChannels.SetCellType(nIndex, nCol, RUNTIME_CLASS(CGridCellCombo));
+			pCell = (CGridCellCombo*)m_GridSTMChannels.GetCell(nIndex, nCol);
+			pCell->SetOptions(strOptions);
+			pCell->SetStyle(CBS_DROPDOWNLIST); //CBS_DROPDOWN, CBS_DROPDOWNLIST, CBS_SIMPLE				
+			pCell->SetCurSel(m_STM.m_IndividualStructureSTMArray[i].CHANNEL2 - 4);
+			strOptions.RemoveAll();			
+		}		
+		else
+		{
+			str.Format("%d", m_STM.m_IndividualStructureSTMArray[i].CHANNEL2);			
+			m_GridSTMChannels.SetItemText(nIndex, nCol, str);
+			m_GridSTMChannels.SetItemState(nIndex, nCol, m_GridSTMChannels.GetItemState(nIndex, nCol) | GVIS_READONLY);
+			m_GridSTMChannels.SetItemFgColour(nIndex, nCol, RGB(127, 127, 127));
+		}
 		nCol++;
 
 		m_GridSTMChannels.SetItemText(nIndex,nCol,m_STM.m_IndividualStructureSTMArray[i].strCOMMENT);
@@ -601,7 +645,7 @@ BOOL CSTM32Dlg::ProcessSave(BOOL bSilent)
 		IndividualStructureSTM tmp;		
 
 		CGridCellCombo* pCell = (CGridCellCombo*) m_GridSTMChannels.GetCell(i,nCol++);									
-		tmp.CHANNEL = pCell->GetCurSel()+1;
+		tmp.CHANNEL = pCell->GetCurSel();
 
 		for(int j = 0; j < m_STM.m_IndividualStructureSTMArray.GetSize();j++)
 		{
@@ -630,6 +674,12 @@ BOOL CSTM32Dlg::ProcessSave(BOOL bSilent)
 		else if(pCell->GetCurSel() == 3)
 			m_STM.m_IndividualStructureSTMArray[i-1].SPEED = 6;
 
+		if(m_STM.m_IndividualStructureSTMArray[i - 1].PROTOCOL_TYPE == PROTOCOL_TYPE_GRANIT)
+		{
+			pCell = (CGridCellCombo*)m_GridSTMChannels.GetCell(i, nCol++);
+			m_STM.m_IndividualStructureSTMArray[i - 1].CHANNEL2 = pCell->GetCurSel() + 4;
+		}
+		
 		m_STM.m_IndividualStructureSTMArray[i-1].strCOMMENT = m_GridSTMChannels.GetItemText(i,nCol++);				
 	}	
 	return TRUE;

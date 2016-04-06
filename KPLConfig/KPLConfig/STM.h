@@ -61,6 +61,7 @@ struct IndividualStructureGranit: public CKPLVersion
 	int GROUP_NUMBER;//=0- номер группы , 0-16
 	int NUMBER;//=64 количество данных взятых из посылки 64-ТС , 16- ТИТ или ТИИ
 	int ADDRESS_PMZ;//=0 адрес в ПМЗ с которого размещаются обьекты
+	int DATA_FORMAT;//0- значение от 0 до 255 1- значение со знаком где ноль это 125
 	CString strCOMMENT;//granit — поле комментарий к блоку
 
 	IndividualStructureGranit()
@@ -72,6 +73,7 @@ struct IndividualStructureGranit: public CKPLVersion
 		GROUP_NUMBER=0;
 		NUMBER=64;
 		ADDRESS_PMZ=0;
+		DATA_FORMAT = 0;
 	}	
 	IndividualStructureGranit(const IndividualStructureGranit& aIndividualStructure101)
 	{		
@@ -82,6 +84,7 @@ struct IndividualStructureGranit: public CKPLVersion
 		GROUP_NUMBER=aIndividualStructure101.GROUP_NUMBER;
 		NUMBER=aIndividualStructure101.NUMBER;
 		ADDRESS_PMZ=aIndividualStructure101.ADDRESS_PMZ;
+		DATA_FORMAT = aIndividualStructure101.DATA_FORMAT;
 		strCOMMENT=aIndividualStructure101.strCOMMENT;	
 	}
 	void operator = (const IndividualStructureGranit& aIndividualStructure101)
@@ -93,6 +96,7 @@ struct IndividualStructureGranit: public CKPLVersion
 		GROUP_NUMBER=aIndividualStructure101.GROUP_NUMBER;
 		NUMBER=aIndividualStructure101.NUMBER;
 		ADDRESS_PMZ=aIndividualStructure101.ADDRESS_PMZ;
+		DATA_FORMAT = aIndividualStructure101.DATA_FORMAT;
 		strCOMMENT=aIndividualStructure101.strCOMMENT;	
 	}
 };
@@ -306,6 +310,7 @@ struct IndividualStructureSTM: public CKPLVersion
 				2 - 300 бод
 				3 - 200 бод
 				6 - 100 бод*/
+	int CHANNEL2;//номер приемного канала от 4 до 7 для протокола Гранит (для остальных протоколов неактивное поле)
 	CString strCOMMENT;//granit — поле комментарий к блоку
 
 	СGranit m_Granit;
@@ -315,13 +320,15 @@ struct IndividualStructureSTM: public CKPLVersion
 	{			
 		PROTOCOL_TYPE=1;
 		CHANNEL=0;		
-		SPEED=1;			
+		SPEED=1;
+		CHANNEL2 = 0;
 	}
 	IndividualStructureSTM(const IndividualStructureSTM& aIndividualStructure101)
 	{		
 		PROTOCOL_TYPE=aIndividualStructure101.PROTOCOL_TYPE;
 		CHANNEL=aIndividualStructure101.CHANNEL;		
-		SPEED=aIndividualStructure101.SPEED;		
+		SPEED=aIndividualStructure101.SPEED;	
+		CHANNEL2 = aIndividualStructure101.CHANNEL2;
 		m_Granit = aIndividualStructure101.m_Granit;
 		m_AIST = aIndividualStructure101.m_AIST;
 		strCOMMENT=aIndividualStructure101.strCOMMENT;	
@@ -330,7 +337,8 @@ struct IndividualStructureSTM: public CKPLVersion
 	{
 		PROTOCOL_TYPE=aIndividualStructure101.PROTOCOL_TYPE;
 		CHANNEL=aIndividualStructure101.CHANNEL;		
-		SPEED=aIndividualStructure101.SPEED;		
+		SPEED=aIndividualStructure101.SPEED;	
+		CHANNEL2 = aIndividualStructure101.CHANNEL2;
 		m_Granit = aIndividualStructure101.m_Granit;
 		m_AIST = aIndividualStructure101.m_AIST;
 		strCOMMENT=aIndividualStructure101.strCOMMENT;	
